@@ -1,0 +1,14 @@
+Example app listening at http://localhost:3000
+Request url is '/user' and Request Method is GET
+Request url is '/user/1' and Request Method is GET
+Request url is '/user/6' and Request Method is GET
+Request url is '/user/41' and Request Method is GET
+Request url is '/purchases' and Request Method is GET
+Request url is '/order' and Request Method is GET
+Request url is '/order/90099' and Request Method is GET
+Request url is '/order-item' and Request Method is GET
+Request url is '/order-item/234' and Request Method is GET
+Request url is '/auth/login' and Request Method is POST
+Request url is '/auth/admin-login' and Request Method is POST
+Request url is '/auth/content' and Request Method is GET
+Request url is '/auth/logout' and Request Method is GET

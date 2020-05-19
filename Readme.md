@@ -1,0 +1,20 @@
+## Project setup
+
+If you would like to play around with this project on a local database:
+
+1. clone the project
+
+   > git clone https://gitlab.com/2005-javareact/trainingrepos/1w-abcmartv3.0
+
+2. download node modules:
+
+   > npm install
+
+3. run the SQL script (data.sql) in your local database
+
+4. Start the express server using:
+   > npm run dev
+
+or
+
+> npm start
