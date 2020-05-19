@@ -1,3 +1,9 @@
+# GYM ECOMMERCE
+
+This is an REST API created with Express and a PostgreSQL database. REST API 
+displays users who have created accounts, items that are available in the store,
+and items that were purchased
+
 ## Project setup
 
 If you would like to play around with this project on a local database:
