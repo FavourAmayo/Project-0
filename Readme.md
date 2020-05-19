@@ -10,7 +10,7 @@ If you would like to play around with this project on a local database:
 
 1. clone the project
 
-   > git clone https://gitlab.com/2005-javareact/trainingrepos/1w-abcmartv3.0
+   > git clone git@gitlab.com:2005-javareact/favour/project-0.git
 
 2. download node modules:
 
