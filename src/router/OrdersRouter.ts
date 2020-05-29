@@ -32,16 +32,25 @@ orderRouter.post("/", async (req: any, res: any) => {
     order_status,
     order_date,
     shipped_date,
+    item_id,
   }: {
     order_id: number;
     user_id: number;
     order_status: string;
     order_date: string;
     shipped_date: string;
+    item_id: number;
   } = req.body; //try outputting req.body to the console to see what it looks like
   try {
     let order: Order = await orderService.saveOneOrder(
-      new Order(order_id, user_id, order_status, order_date, shipped_date)
+      new Order(
+        order_id,
+        user_id,
+        order_status,
+        order_date,
+        shipped_date,
+        item_id
+      )
     );
     // upon successful creation, send back a 201 (created)
     res.status(201).json(order);
@@ -58,19 +67,28 @@ orderRouter.put("/", async (req: any, res: any) => {
     order_status,
     order_date,
     shipped_date,
+    item_id,
   }: {
     order_id: number;
     user_id: number;
     order_status: string;
     order_date: string;
     shipped_date: string;
+    item_id: number;
   } = req.body; //try outputting req.body to the console to see what it looks like
   try {
     let order: string = await orderService.updateOneOrder(
-      new Order(order_id, user_id, order_status, order_date, shipped_date)
+      new Order(
+        order_id,
+        user_id,
+        order_status,
+        order_date,
+        shipped_date,
+        item_id
+      )
     );
     // upon successful creation, send back a 201 (created)
-    res.status(201).json({message:order});
+    res.status(201).json({ message: order });
   } catch (e) {
     res.status(500).send(e.message);
   }

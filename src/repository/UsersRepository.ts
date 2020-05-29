@@ -48,7 +48,7 @@ export async function findOrderedItems(): Promise<Purchase[]> {
   try {
     client = await pool.connect();
     const results = await client.query(
-      "SELECT users.name, orders.order_id, orders.order_status, orders.order_date, orders.shipped_date FROM users INNER JOIN orders ON users.user_id = orders.user_id;"
+      "SELECT users.name, orders.order_id, orders.order_status, orders.order_date, orders.shipped_date, orders.item_id FROM users INNER JOIN orders ON users.user_id = orders.user_id;"
     );
     // console.table(results.rows);
     // console.log(results.rows);

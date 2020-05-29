@@ -22,15 +22,14 @@ export async function findAllOrderItems(): Promise<OrderItem[]> {
 
 export async function saveOneOrderItem(input: OrderItem): Promise<OrderItem> {
   let client;
-  let newOrderItem = new OrderItem(0, 0, 0, 0, 0, "", "");
+  let newOrderItem = new OrderItem(0, 0, 0, 0, "", "");
   try {
     client = await pool.connect();
     //insert paper into table and retrieve the generated id (optional)
     const result = await client.query(
-      "INSERT INTO order_items(item_id, order_id, product_id, quantity, list_price, name, description) VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING item_id;",
+      "INSERT INTO order_items(item_id, product_id, quantity, list_price, name, description) VALUES($1,$2,$3,$4,$5,$6) RETURNING item_id;",
       [
         input.item_id,
-        input.order_id,
         input.product_id,
         input.quantity,
         input.list_price,
@@ -116,14 +115,13 @@ export async function filterByPrice(input: any): Promise<OrderItem[]> {
 
 export async function updateOneOrderItem(input: OrderItem): Promise<string> {
   let client;
-  let updatedOrderItem = new OrderItem(0, 0, 0, 0, 0, "", "");
+  let updatedOrderItem = new OrderItem(0, 0, 0, 0, "", "");
   try {
     client = await pool.connect();
     const result = await client.query(
-      "UPDATE public.order_items SET order_id = $2, product_id = $3, quantity = $4, list_price = $5, name = $6, description = $7 WHERE item_id = $1;",
+      "UPDATE public.order_items SET product_id = $2, quantity = $3, list_price = $4, name = $5, description = $6 WHERE item_id = $1;",
       [
         input.item_id,
-        input.order_id,
         input.product_id,
         input.quantity,
         input.list_price,

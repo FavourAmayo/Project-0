@@ -26,6 +26,7 @@ orderItemRouter.get("/:id/price", async (req: any, res: any) => {
   try {
     let found: OrderItem[] = await orderItemService.findPrice(req.params.id);
     res.json({
+      product_id: found[0].product_id,
       quantity: found[0].quantity,
       list_price: found[0].list_price,
       name: found[0].name,
@@ -50,7 +51,6 @@ orderItemRouter.post("/", async (req: any, res: any) => {
   // the line below is getting information from the body of the request via destructuring
   let {
     item_id,
-    order_id,
     product_id,
     quantity,
     list_price,
@@ -58,7 +58,6 @@ orderItemRouter.post("/", async (req: any, res: any) => {
     description,
   }: {
     item_id: number;
-    order_id: number;
     product_id: number;
     quantity: number;
     list_price: number;
@@ -69,7 +68,6 @@ orderItemRouter.post("/", async (req: any, res: any) => {
     let orderItem: OrderItem = await orderItemService.saveOneOrderItem(
       new OrderItem(
         item_id,
-        order_id,
         product_id,
         quantity,
         list_price,
@@ -88,7 +86,6 @@ orderItemRouter.put("/", async (req: any, res: any) => {
   // the line below is getting information from the body of the request via destructuring
   let {
     item_id,
-    order_id,
     product_id,
     quantity,
     list_price,
@@ -96,7 +93,6 @@ orderItemRouter.put("/", async (req: any, res: any) => {
     description,
   }: {
     item_id: number;
-    order_id: number;
     product_id: number;
     quantity: number;
     list_price: number;
@@ -107,7 +103,6 @@ orderItemRouter.put("/", async (req: any, res: any) => {
     let orderItem: string = await orderItemService.updateOneOrderItem(
       new OrderItem(
         item_id,
-        order_id,
         product_id,
         quantity,
         list_price,

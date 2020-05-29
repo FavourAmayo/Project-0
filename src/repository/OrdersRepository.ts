@@ -43,18 +43,19 @@ export async function findOrder(input: any): Promise<Order[]> {
 
 export async function saveOneOrder(input: Order): Promise<Order> {
   let client;
-  let newOrder = new Order(0, 0, "", "", "");
+  let newOrder = new Order(0, 0, "", "", "", 0);
   try {
     client = await pool.connect();
     //insert paper into table and retrieve the generated id (optional)
     const result = await client.query(
-      "INSERT INTO orders(order_id, user_id, order_status, order_date, shipped_date) VALUES($1,$2,$3,$4, $5) RETURNING order_id;",
+      "INSERT INTO orders(order_id, user_id, order_status, order_date, shipped_date, item_id) VALUES($1,$2,$3,$4, $5, $6) RETURNING order_id;",
       [
         input.order_id,
         input.user_id,
         input.order_status,
         input.order_date,
         input.shipped_date,
+        input.item_id,
       ]
     );
     let OrderId = result.rows[0].order_id; // try console.log-ing result.rows to see why we access the id this way
@@ -72,18 +73,19 @@ export async function saveOneOrder(input: Order): Promise<Order> {
 
 export async function updateOneOrder(input: Order): Promise<string> {
   let client;
-  let updatedOrder = new Order(0, 0, "", "", "");
+  let updatedOrder = new Order(0, 0, "", "", "", 0);
   try {
     client = await pool.connect();
     //insert paper into table and retrieve the generated id (optional)
     const result = await client.query(
-      "UPDATE orders SET user_id = $2, order_status = $3, order_date = $4, shipped_date = $5 WHERE order_id = $1;",
+      "UPDATE orders SET user_id = $2, order_status = $3, order_date = $4, shipped_date = $5, item_id = $6 WHERE order_id = $1;",
       [
         input.order_id,
         input.user_id,
         input.order_status,
         input.order_date,
         input.shipped_date,
+        input.item_id,
       ]
     );
     //let OrderId = result.rows[0].order_id; // try console.log-ing result.rows to see why we access the id this way
