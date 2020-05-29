@@ -53,14 +53,14 @@ exports.loginRouter.post("/admin-login", (req, res) => {
             admin.session_id = req.sessionID;
             admin.username = req.session.user;
             req.session.save((err) => {
-                res.end("logged in successfully!");
+                res.end("admin logged in successfully!");
             });
         }
     }
 });
 // Get content
 exports.loginRouter.get("/content", auth, (req, res) => {
-    res.send("You can only see this after you've logged in.");
+    res.send("You can only see if logged in as admin.");
 });
 // logout functionality
 exports.loginRouter.get("/logout", (req, res, next) => {

@@ -35,9 +35,9 @@ exports.orderRouter.get("/:id", (req, res) => __awaiter(void 0, void 0, void 0, 
 // in order for it to run properly, make sure you app.use() the body parser in index.ts
 exports.orderRouter.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // the line below is getting information from the body of the request via destructuring
-    let { order_id, user_id, order_status, order_date, shipped_date, } = req.body; //try outputting req.body to the console to see what it looks like
+    let { order_id, user_id, order_status, order_date, shipped_date, item_id, } = req.body; //try outputting req.body to the console to see what it looks like
     try {
-        let order = yield orderService.saveOneOrder(new Order_1.Order(order_id, user_id, order_status, order_date, shipped_date));
+        let order = yield orderService.saveOneOrder(new Order_1.Order(order_id, user_id, order_status, order_date, shipped_date, item_id));
         // upon successful creation, send back a 201 (created)
         res.status(201).json(order);
     }
@@ -47,9 +47,9 @@ exports.orderRouter.post("/", (req, res) => __awaiter(void 0, void 0, void 0, fu
 }));
 exports.orderRouter.put("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // the line below is getting information from the body of the request via destructuring
-    let { order_id, user_id, order_status, order_date, shipped_date, } = req.body; //try outputting req.body to the console to see what it looks like
+    let { order_id, user_id, order_status, order_date, shipped_date, item_id, } = req.body; //try outputting req.body to the console to see what it looks like
     try {
-        let order = yield orderService.updateOneOrder(new Order_1.Order(order_id, user_id, order_status, order_date, shipped_date));
+        let order = yield orderService.updateOneOrder(new Order_1.Order(order_id, user_id, order_status, order_date, shipped_date, item_id));
         // upon successful creation, send back a 201 (created)
         res.status(201).json({ message: order });
     }

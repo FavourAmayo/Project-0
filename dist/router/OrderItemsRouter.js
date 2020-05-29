@@ -35,6 +35,7 @@ exports.orderItemRouter.get("/:id/price", (req, res) => __awaiter(void 0, void 0
     try {
         let found = yield orderItemService.findPrice(req.params.id);
         res.json({
+            product_id: found[0].product_id,
             quantity: found[0].quantity,
             list_price: found[0].list_price,
             name: found[0].name,
@@ -57,9 +58,9 @@ exports.orderItemRouter.get("/filter/:cost", (req, res) => __awaiter(void 0, voi
 }));
 exports.orderItemRouter.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // the line below is getting information from the body of the request via destructuring
-    let { item_id, order_id, product_id, quantity, list_price, name, description, } = req.body; //try outputting req.body to the console to see what it looks like
+    let { item_id, product_id, quantity, list_price, name, description, } = req.body; //try outputting req.body to the console to see what it looks like
     try {
-        let orderItem = yield orderItemService.saveOneOrderItem(new OrderItem_1.OrderItem(item_id, order_id, product_id, quantity, list_price, name, description));
+        let orderItem = yield orderItemService.saveOneOrderItem(new OrderItem_1.OrderItem(item_id, product_id, quantity, list_price, name, description));
         // upon successful creation, send back a 201 (created)
         res.status(201).json(orderItem);
     }
@@ -69,9 +70,9 @@ exports.orderItemRouter.post("/", (req, res) => __awaiter(void 0, void 0, void 0
 }));
 exports.orderItemRouter.put("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // the line below is getting information from the body of the request via destructuring
-    let { item_id, order_id, product_id, quantity, list_price, name, description, } = req.body; //try outputting req.body to the console to see what it looks like
+    let { item_id, product_id, quantity, list_price, name, description, } = req.body; //try outputting req.body to the console to see what it looks like
     try {
-        let orderItem = yield orderItemService.updateOneOrderItem(new OrderItem_1.OrderItem(item_id, order_id, product_id, quantity, list_price, name, description));
+        let orderItem = yield orderItemService.updateOneOrderItem(new OrderItem_1.OrderItem(item_id, product_id, quantity, list_price, name, description));
         // upon successful creation, send back a 201 (created)
         res.status(201).json({ message: orderItem });
     }

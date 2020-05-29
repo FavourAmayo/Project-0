@@ -3,8 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const pg_1 = require("pg");
 exports.pool = new pg_1.Pool({
     user: "postgres",
-    host: "127.0.0.1",
+    host: "database-1.ch4fpdxcfwkt.us-east-2.rds.amazonaws.com",
     database: "workout",
-    password: "null",
+    password: "gettingData5",
     port: 5432,
 });

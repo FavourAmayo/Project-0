@@ -59,16 +59,17 @@ exports.findOrder = findOrder;
 function saveOneOrder(input) {
     return __awaiter(this, void 0, void 0, function* () {
         let client;
-        let newOrder = new Order_1.Order(0, 0, "", "", "");
+        let newOrder = new Order_1.Order(0, 0, "", "", "", 0);
         try {
             client = yield _1.pool.connect();
             //insert paper into table and retrieve the generated id (optional)
-            const result = yield client.query("INSERT INTO orders(order_id, user_id, order_status, order_date, shipped_date) VALUES($1,$2,$3,$4, $5) RETURNING order_id;", [
+            const result = yield client.query("INSERT INTO orders(order_id, user_id, order_status, order_date, shipped_date, item_id) VALUES($1,$2,$3,$4, $5, $6) RETURNING order_id;", [
                 input.order_id,
                 input.user_id,
                 input.order_status,
                 input.order_date,
                 input.shipped_date,
+                input.item_id,
             ]);
             let OrderId = result.rows[0].order_id; // try console.log-ing result.rows to see why we access the id this way
             //console.table(result.rows);
@@ -89,16 +90,17 @@ exports.saveOneOrder = saveOneOrder;
 function updateOneOrder(input) {
     return __awaiter(this, void 0, void 0, function* () {
         let client;
-        let updatedOrder = new Order_1.Order(0, 0, "", "", "");
+        let updatedOrder = new Order_1.Order(0, 0, "", "", "", 0);
         try {
             client = yield _1.pool.connect();
             //insert paper into table and retrieve the generated id (optional)
-            const result = yield client.query("UPDATE orders SET user_id = $2, order_status = $3, order_date = $4, shipped_date = $5 WHERE order_id = $1;", [
+            const result = yield client.query("UPDATE orders SET user_id = $2, order_status = $3, order_date = $4, shipped_date = $5, item_id = $6 WHERE order_id = $1;", [
                 input.order_id,
                 input.user_id,
                 input.order_status,
                 input.order_date,
                 input.shipped_date,
+                input.item_id,
             ]);
             //let OrderId = result.rows[0].order_id; // try console.log-ing result.rows to see why we access the id this way
             // console.table(result.rows);

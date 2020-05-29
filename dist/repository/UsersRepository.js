@@ -62,7 +62,7 @@ function findOrderedItems() {
         let client;
         try {
             client = yield _1.pool.connect();
-            const results = yield client.query("SELECT users.name, orders.order_id, orders.order_status, orders.order_date, orders.shipped_date FROM users INNER JOIN orders ON users.user_id = orders.user_id;");
+            const results = yield client.query("SELECT users.name, orders.order_id, orders.order_status, orders.order_date, orders.shipped_date, orders.item_id FROM users INNER JOIN orders ON users.user_id = orders.user_id;");
             // console.table(results.rows);
             // console.log(results.rows);
             let output = results.rows.map(PurchaseDTO_1.convertToPurchaseArray);

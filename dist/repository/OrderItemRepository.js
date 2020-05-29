@@ -37,13 +37,12 @@ exports.findAllOrderItems = findAllOrderItems;
 function saveOneOrderItem(input) {
     return __awaiter(this, void 0, void 0, function* () {
         let client;
-        let newOrderItem = new OrderItem_1.OrderItem(0, 0, 0, 0, 0, "", "");
+        let newOrderItem = new OrderItem_1.OrderItem(0, 0, 0, 0, "", "");
         try {
             client = yield _1.pool.connect();
             //insert paper into table and retrieve the generated id (optional)
-            const result = yield client.query("INSERT INTO order_items(item_id, order_id, product_id, quantity, list_price, name, description) VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING item_id;", [
+            const result = yield client.query("INSERT INTO order_items(item_id, product_id, quantity, list_price, name, description) VALUES($1,$2,$3,$4,$5,$6) RETURNING item_id;", [
                 input.item_id,
-                input.order_id,
                 input.product_id,
                 input.quantity,
                 input.list_price,
@@ -135,12 +134,11 @@ exports.filterByPrice = filterByPrice;
 function updateOneOrderItem(input) {
     return __awaiter(this, void 0, void 0, function* () {
         let client;
-        let updatedOrderItem = new OrderItem_1.OrderItem(0, 0, 0, 0, 0, "", "");
+        let updatedOrderItem = new OrderItem_1.OrderItem(0, 0, 0, 0, "", "");
         try {
             client = yield _1.pool.connect();
-            const result = yield client.query("UPDATE public.order_items SET order_id = $2, product_id = $3, quantity = $4, list_price = $5, name = $6, description = $7 WHERE item_id = $1;", [
+            const result = yield client.query("UPDATE public.order_items SET product_id = $2, quantity = $3, list_price = $4, name = $5, description = $6 WHERE item_id = $1;", [
                 input.item_id,
-                input.order_id,
                 input.product_id,
                 input.quantity,
                 input.list_price,
