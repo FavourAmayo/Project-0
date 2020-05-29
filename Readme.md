@@ -52,7 +52,9 @@ Body of request example:
 ### Update one user that exists already.
 
 Keep id the same.
+
 Can update every portion or just one portion
+
 PUT /user
 
 Body of request example:
@@ -97,7 +99,9 @@ Body of request:
 ### Update One Order
 
 PUT /order
+
 Keep id the same
+
 user_id refers to the user that purchased the item
 
 Body of request:
@@ -141,7 +145,9 @@ Body of request:
 ### Update One Order Item
 
 PUT /order-item
+
 Keep id the same
+
 Can change all fields except id or just one
 
 Body of request:
@@ -160,6 +166,7 @@ Body of request:
 ### Get Purchases
 
 GET /purchases
+
 Shows purchases of specific users
 
 ### Login Admin
