@@ -89,7 +89,8 @@ Body of request:
    "user_id": 3,
    "order_status": "pending",
    "order_date": "2020-05-09T07:00:00.000Z",
-   "shipped_date": "2020-05-15T07:00:00.000Z"
+   "shipped_date": "2020-05-15T07:00:00.000Z",
+   "item_id": 456
 }
 ```
 
@@ -107,7 +108,8 @@ Body of request:
    "user_id": 2,
    "order_status": "shipped",
    "order_date": "2020-05-08T07:00:00.000Z",
-   "shipped_date": "2020-05-16T07:00:00.000Z"
+   "shipped_date": "2020-05-16T07:00:00.000Z",
+   "item_id": 268
 }
 ```
 
@@ -128,7 +130,6 @@ Body of request:
 ```
 {
    "item_id": 707,
-   "order_id": 58843,
    "product_id": 204352,
    "quantity": 50,
    "list_price": "$13.00",
@@ -148,7 +149,6 @@ Body of request:
 ```
 {
    "item_id": 948,
-   "order_id": 43524,
    "product_id": 948523,
    "quantity": 600,
    "list_price": "$35.00",
